@@ -1,0 +1,31 @@
+# dependencias y builds
+node_modules/
+.expo/
+dist/
+web-build/
+coverage/
+
+# secretos y entorno
+.env
+.env.*
+!.env.example
+
+# archivos que no quiero en el repo
+CLAUDE.md
+docs/especificacion.md
+
+# sistema y editor
+.DS_Store
+*.log
+.vscode/
+.idea/
+
+# nativo generado
+android/
+ios/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+docs/especificacion.md
