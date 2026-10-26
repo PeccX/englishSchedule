@@ -19,4 +19,8 @@ export class CatalogService {
   listTeachers(courseId: Id, levelId: Id): Promise<Teacher[]> {
     return this.teachers.listByCourseAndLevel(courseId, levelId);
   }
+
+  getTeacher(id: Id): Promise<Teacher | null> {
+    return this.teachers.get(id);
+  }
 }

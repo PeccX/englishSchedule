@@ -18,7 +18,7 @@ import { InMemoryStore } from './InMemoryStore';
 /** Gancho que se ejecuta dentro de la sección crítica, antes de leer los candados. */
 export type BeforeBookHook = (draft: LessonDraft, store: InMemoryStore) => void;
 
-const yieldTick = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
+const yieldTick = () => Promise.resolve(); // cede el turno sin depender de timers (compatible con fake timers)
 
 export class InMemoryLessonRepository implements LessonRepository {
   constructor(
