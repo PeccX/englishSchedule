@@ -51,12 +51,18 @@ const TEACHERS: Teacher[] = [
   },
 ];
 
+/** Datos de catálogo compartidos por la siembra en memoria y la de Firestore. */
+export const seedCatalog = () => ({
+  courses: COURSES,
+  levels: COURSES.flatMap(levelsOf),
+  teachers: TEACHERS,
+});
+
 export function seedStore(store: InMemoryStore): void {
-  COURSES.forEach((c) => {
-    store.courses.set(c.id, c);
-    levelsOf(c).forEach((l) => store.levels.set(l.id, l));
-  });
-  TEACHERS.forEach((t) => store.teachers.set(t.id, t));
+  const { courses, levels, teachers } = seedCatalog();
+  courses.forEach((c) => store.courses.set(c.id, c));
+  levels.forEach((l) => store.levels.set(l.id, l));
+  teachers.forEach((t) => store.teachers.set(t.id, t));
   store.students.set(DEMO_STUDENT.uid, {
     id: DEMO_STUDENT.uid,
     name: 'Estudiante Demo',

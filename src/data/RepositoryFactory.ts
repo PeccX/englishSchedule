@@ -23,6 +23,10 @@ export interface RepositoryFactory {
 
 /** Elige la fábrica concreta según la configuración (OCP: otra fuente = otra fábrica). */
 export function createRepositoryFactory(db: Database = Database.getInstance()): RepositoryFactory {
-  // 'firestore' llegará con su propia fábrica; hoy toda configuración usa memoria.
+  if (db.config.dataMode === 'firestore') {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- carga diferida: memory no necesita Firebase
+    const { FirestoreRepositoryFactory } = require('./firestore/FirestoreRepositoryFactory') as typeof import('./firestore/FirestoreRepositoryFactory');
+    return new FirestoreRepositoryFactory(db.firebase(), db.config.demoRace);
+  }
   return new InMemoryRepositoryFactory(db.store, db.config.demoRace);
 }
