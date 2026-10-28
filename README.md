@@ -1,5 +1,7 @@
 # englishSchedule
 
+link del repo: https://github.com/PeccX/englishSchedule.git
+
 App móvil para agendar lecciones de inglés sin choques de horario. Hecha con React Native, Expo y TypeScript, con Firebase (Firestore y Authentication).
 
 ## Requisitos
